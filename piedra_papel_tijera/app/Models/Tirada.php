@@ -19,7 +19,7 @@ class Tirada extends Model
 
     // Funciones para las relaciones de claves foráneas
     function tiradaPerteneceA()
-    { // FIXME no funciona esta relación de claves foráneas
+    {
         return $this->belongsTo(Partida::class, 'idPartida', 'id');
     }
 
