@@ -24,7 +24,6 @@ class PartidaController extends Controller
         }
     }
 
-    // ASK Si esta función debe hacerse aqui
     public static function terminarPartida($id) {
         $partida = Partida::find($id);
 
@@ -35,5 +34,9 @@ class PartidaController extends Controller
         } else {
             return response()->json("No existe la partida", 404);
         }
+    }
+
+    public static function crearPartida(Request $request) {
+
     }
 }

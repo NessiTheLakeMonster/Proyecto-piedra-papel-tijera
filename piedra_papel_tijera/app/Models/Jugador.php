@@ -16,7 +16,6 @@ class Jugador extends Model
     protected $keyType = 'int';
     public $timestamps = false;
 
-    // TODO Pregunta si es necesario esto
     /* protected $fillable = [
         'nombre',
         'password',

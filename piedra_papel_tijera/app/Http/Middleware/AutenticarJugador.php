@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Models\Jugador;
 
 class AutenticarJugador
 {
@@ -13,17 +14,15 @@ class AutenticarJugador
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
         $datos = $request->json()->all();
         $nombre = $datos['nombre'];
         $password = $datos['password'];
 
-        // ASK Para que se usa first()
-        $nomJugador = \App\Models\Jugador::where('nombre', $nombre)->first();
-        $passwdJugador = \App\Models\Jugador::where('password', $password)->first();
+        $jugador = Jugador::where('nombre', $nombre)->where('password', $password)->first();
 
-        if ($nomJugador != null && $passwdJugador != null) {
+        if ($jugador != null) {
             return $next($request);
         } else {
             return response()->json("No existe el jugador", 404);
